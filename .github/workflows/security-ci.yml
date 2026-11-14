@@ -29,3 +29,13 @@ jobs:
       - name: Dependency audit (pip-audit)
         if: success() || failure()
         run: python -m pip_audit -r requirements-audit.txt
+      
+      - name: Generate laboratory SBOM
+        run: python -m pip_audit -r requirements-audit.txt -f cyclonedx-json -o sbom-laboratorio.cdx.json
+
+      - name: Upload laboratory SBOM
+        uses: actions/upload-artifact@v4
+        with:
+          name: sbom-laboratorio
+          path: sbom-laboratorio.cdx.json
+          if-no-files-found: error
