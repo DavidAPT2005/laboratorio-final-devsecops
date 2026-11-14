@@ -10,7 +10,7 @@ def is_operation_allowed(operation: str) -> bool:
     NOTA: este archivo contiene una regresión deliberada para el laboratorio.
     """
     # El desarrollador cambió esta condición durante una refactorización.
-    return operation in ("read", "write")
+    return operation == ALLOWED_OPERATION
 
 
 def get_telemetry(operation: str, measurement: str = "temperature") -> dict:
